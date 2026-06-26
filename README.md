@@ -1,2 +1,5 @@
-# LaTeX-Poster
-:scroll: LaTeX Poster (Beamer Theme)
+<div align=center>
+
+# $\LaTeX$ `Poster`
+
+</div>
