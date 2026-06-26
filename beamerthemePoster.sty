@@ -1,0 +1,413 @@
+
+%%----------------------------------------------------------------------------------------
+%%   PACKAGE LOADING
+%%----------------------------------------------------------------------------------------
+
+%% Load the xparse package for advanced command definitions
+\RequirePackage{xparse}
+
+%% Load the ifthen package for conditional statements
+\RequirePackage{ifthen}
+
+%% Load the etoolbox package for programming tools
+\RequirePackage{etoolbox}
+
+%% Load the encoding package for UTF-8 support
+%% (This should be loaded before any other packages that use characters, e.g. fontenc, biblatex)
+\RequirePackage[utf8]{inputenc}
+
+%% Load the font encoding package for better font support
+\RequirePackage[T1]{fontenc}
+
+%% Load the ragged2e package for improved text alignment
+\RequirePackage{ragged2e}
+
+%% Load the textcomp package for additional text symbols
+\RequirePackage{textcomp}
+
+%% Load the bibliography package
+\makeatletter
+\@ifundefined{opt@biblatex.sty}{
+  % \RequirePackage[backend=biber, style=alphabetic, citestyle=authoryear]{biblatex}
+  \RequirePackage[backend=biber, style=authoryear, citestyle=authoryear, maxcitenames=1, uniquelist=false, maxbibnames=99]{biblatex}
+}{
+  \RequirePackage[backend=biber]{biblatex}
+}
+\makeatother
+%% Change parentheses to square brackets for parenthetical citations like \autocite
+% \renewcommand*{\mkbibparens}[1]{\bibopenbracket#1\bibclosebracket}
+\AtBeginBibliography{\footnotesize}
+\defbibenvironment{bibliography}
+  {\list{}{\leftmargin=0.5em\itemindent=-0.5em\itemsep=0.5ex\parsep=0pt}}
+  {\endlist}
+  {\item}
+
+\setbeamertemplate{bibliography item}{}
+
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+
+\DeclareNameAlias{sortname}{given-family}
+\DeclareNameAlias{default}{given-family}
+
+%% Load math packages for mathematical typesetting
+\RequirePackage{amsmath, amsfonts, amsthm, amssymb, mathtools, mathrsfs, mathdots}
+
+%% Load the nicefrac package for typesetting fractions
+\RequirePackage{nicefrac}
+
+%% Load the cancel package for striking out text in math mode
+\RequirePackage{cancel}
+
+
+%% Load the Double-Struck Font package for double-struck symbols \mathds{...}
+\RequirePackage{dsfont}
+
+%% Load the Upgreek package for upright Greek letters
+\RequirePackage{upgreek}
+
+%% Load the systeme package for typesetting systems of linear (and non-linear) equations.
+\RequirePackage{systeme}
+
+%% Load the siunitx package for SI units and numbers
+%% Use the locale option to set the number formatting according to the specified location.
+\RequirePackage[locale=US]{siunitx}
+
+%% Load the graphicx package for including graphics
+\RequirePackage{graphicx}
+
+%% Load the pifont package for special symbols
+%% https://dl.icdst.org/pdfs/files3/1900293ae8829c4c53fe55f2c9f0077c.pdf
+\RequirePackage{pifont}
+
+%% Load the TikZ package for creating graphics
+\RequirePackage{tikz}
+
+%% Load the pgfplots package for creating plots
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\RequirePackage{pgfplotstable}
+\usetikzlibrary{positioning, arrows.meta, calc, fadings, decorations.markings,pgfplots.fillbetween}
+
+%% Load the multirow and multicol packages for advanced row and column formatting
+\RequirePackage{multirow}
+\RequirePackage{multicol}
+
+%% Load the quotes package for better quotation handling
+\RequirePackage{csquotes} 
+\renewcommand{\mkbegdispquote}[2]{\itshape}
+
+%% Load the soul package for text highlighting
+% \RequirePackage{soulutf8} %% Use this for UTF-8 support with highlighting
+\RequirePackage{soul}
+\newcommand{\spaceout}{\so}
+
+%% Load the fancyvrb package for fancy verbatim text handling
+\RequirePackage{fancyvrb}
+
+%% Load the enumitem package for advanced list formatting
+%% Do not load enumitem as it is incompatible with beamer
+% \RequirePackage{enumitem}
+
+%% Load the booktabs package for better table formatting
+\RequirePackage{booktabs}
+
+%% Load the array dashed line package for advanced array and tabular features
+\RequirePackage{arydshln}
+
+%% Load the caption and subcaption packages for figure and table captions
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\captionsetup{labelfont = bf, labelsep = period, font = {footnotesize}}
+
+%% Load the multimedia package for embedding movie and sound files
+\RequirePackage{multimedia}
+
+%% Load the pbox package for paragraph boxes
+\RequirePackage{pbox}
+
+%% Load the tcolorbox package for colored boxes
+\RequirePackage{tcolorbox}
+
+%% Load the algorithm and algpseudocode packages for algorithm formatting
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+
+%% Load the float package for controlling float placement
+\RequirePackage{float}
+
+%% Load the nameref package for referencing names
+\RequirePackage{nameref}
+
+% Tech standard font package
+% \RequirePackage[sfdefault]{inter}
+
+% Google font package
+% \RequirePackage[sfdefault]{roboto}
+
+% Adobe font package
+% \RequirePackage[default]{sourcesanspro}
+
+% Mozilla font package
+\RequirePackage[sfdefault]{FiraSans}
+
+% Math font package
+\usefonttheme[onlymath]{serif}
+
+
+%%----------------------------------------------------------------------------------------
+%%   PROCESS OPTIONAL ARGUMENTS
+%%----------------------------------------------------------------------------------------
+
+% 1. Define the length register
+\newlength{\headerHeight}
+\newlength{\paddingWidth}
+\newlength{\blockTitleHeight}
+\newlength{\sidePadding}
+
+% 2. Define the "key" that the user can pass
+\DeclareOptionBeamer{headerHeight}{\setlength{\headerHeight}{#1}}
+\DeclareOptionBeamer{paddingWidth}{\setlength{\paddingWidth}{#1}}
+\DeclareOptionBeamer{blockTitleHeight}{\setlength{\blockTitleHeight}{#1}}
+\DeclareOptionBeamer{sidePadding}{\setlength{\sidePadding}{#1}}
+% 3. Set a default value (in case the user doesn't provide the argument)
+\ExecuteOptionsBeamer{headerHeight=10cm}
+\ExecuteOptionsBeamer{paddingWidth=2em}
+\ExecuteOptionsBeamer{blockTitleHeight=6\baselineskip}
+\ExecuteOptionsBeamer{sidePadding=3.2em}
+
+% 4. Process the options provided in \usetheme[...]
+\ProcessOptionsBeamer
+
+
+%%----------------------------------------------------------------------------------------
+%%   BEAMER POSTER STYLE
+%%----------------------------------------------------------------------------------------
+
+
+\newcommand{\paragraph}[1]{\medskip\noindent{\bf #1}\hspace{1em}}
+
+
+
+\setlength{\heavyrulewidth}{3pt} % Default is 0.08em
+\setlength{\lightrulewidth}{1.5pt} % Default is 0.05em
+\setlength{\cmidrulewidth}{1.5pt}  % Default is 0.03em
+
+
+% \setbeamerfont{block title}{family=\Raleway,size=\large,series=\bfseries}
+% \setbeamerfont{heading}{family=\Lato,series=\bfseries}
+\setbeamerfont{caption}{size=\small, family=\sffamily}
+% \setbeamerfont{footline}{family=\Raleway,size=\normalsize}
+
+\setbeamerfont{heading}{series=\bfseries, family=\sffamily}
+
+% Heading
+\newcommand\heading[1]
+{%
+  \par\bigskip
+  {\usebeamerfont{heading}\usebeamercolor[fg]{heading}#1}\par\smallskip
+}
+
+%%----------------------------------------------------------------------------------------
+%%   Headline Template
+%%----------------------------------------------------------------------------------------
+
+% \setbeamerfont{headline}{family=\Raleway}
+\setbeamerfont{headline title}{size=\huge, family=\sffamily, series=\bfseries}
+% \setbeamerfont{headline title}{size=\huge,series=\bfseries}
+\setbeamerfont{headline author}{size=\large, family=\sffamily}
+\setbeamerfont{headline institute}{size=\large, family=\sffamily}
+
+
+
+% 1. Stop Beamer from auto-placing the logo in the bottom right (right sidebar)
+\setbeamertemplate{sidebar right}{}
+
+% 2. Remove the navigation symbols (the icons in the bottom right)
+\beamertemplatenavigationsymbolsempty
+
+\newlength{\logoWidth}
+\setlength{\logoWidth}{0cm}
+
+\renewcommand{\logo}[1]{
+  % 1. Define a temporary box to hold the resized logo
+  \newsavebox{\tempLogoBox}
+  
+  % 2. Perform the resize inside the box (this happens in memory)
+  \sbox{\tempLogoBox}{\resizebox{!}{\dimexpr \headerHeight \relax}{#1}}
+  
+  % 3. Extract the width from the box
+  \setlength{\logoWidth}{\wd\tempLogoBox}
+}
+
+\newlength{\qrCodeWidth}
+\setlength{\qrCodeWidth}{0cm}
+
+\newcommand{\qrcode}[1]{
+  % Similar to the logo, we define a temporary box for theresized QR code and extract its width
+  \newsavebox{\tempQRCodeBox}
+  \sbox{\tempQRCodeBox}{\resizebox{!}{\dimexpr \headerHeight \relax}{#1}}
+  \setlength{\qrCodeWidth}{\wd\tempQRCodeBox}
+}
+
+
+% 3. Updated Headline Template
+\setbeamertemplate{headline}{
+
+  \begin{beamercolorbox}{headline}
+    \vspace{\paddingWidth}
+
+    \begin{columns}[c,totalwidth=\paperwidth]
+
+      \begin{column}{\paddingWidth+\sidePadding}
+        \hspace*{\paddingWidth+\sidePadding}
+      \end{column}
+      
+      % --- Column 1: Logo (Only created if \logo was called) ---
+      \ifdim\logoWidth>0pt\relax
+        \begin{column}{\logoWidth}
+          \usebox{\tempLogoBox}
+        \end{column}
+      \fi
+
+      % --- Column 2: Title/Author/Institute (Dynamic Width) ---
+      \begin{column}{\dimexpr \paperwidth - \logoWidth - \qrCodeWidth - 2\paddingWidth - 2\sidePadding \relax}
+        \centering
+        % \raggedleft % This pushes the text to the right edge of this column
+        % \rightskip=2\paddingWidth  % <--- This adds the \paddingWidth padding on the right
+        \ifx\inserttitle\empty\else
+          {\usebeamerfont{headline title}\usebeamercolor[fg]{headline title}\inserttitle\\[0.7ex]}
+        \fi
+        \ifx\beamer@shortauthor\empty\else
+          {\usebeamerfont{headline author}\usebeamercolor[fg]{headline author}\insertauthor\\[0.5ex]}
+        \fi
+        \ifx\insertinstitute\empty\else
+          {\usebeamerfont{headline institute}\usebeamercolor[fg]{headline institute}\insertinstitute\\[0ex]}
+        \fi
+      \end{column}
+
+      % --- Column 3: QR Code (Only created if \qrcode was called) ---
+      \ifdim\qrCodeWidth>0pt\relax
+        \begin{column}{\qrCodeWidth}
+          \usebox{\tempQRCodeBox}
+        \end{column}
+      \fi
+
+      \begin{column}{\paddingWidth+\sidePadding}
+        \hspace*{\paddingWidth+\sidePadding}
+      \end{column}
+
+    \end{columns}
+
+    \vspace{\paddingWidth}
+
+  \end{beamercolorbox}
+}
+
+%%----------------------------------------------------------------------------------------
+%%   Block Template
+%%----------------------------------------------------------------------------------------
+
+\newlength{\paddingLength}
+\setlength{\paddingLength}{\baselineskip}
+
+\setbeamerfont{block title}{size=\Large}% ,series=\bfseries}
+\setbeamerfont{block body}{family=\sffamily}
+
+% --- Block Begin ---
+\setbeamertemplate{block begin}{
+
+  % Title
+  \vspace{0.25\baselineskip} % Space between blocks
+  \begin{beamercolorbox}[wd=\linewidth]{block title}
+    \begin{minipage}[c][\blockTitleHeight][c]{\linewidth}
+      \hspace*{\paddingLength}
+      {\usebeamerfont{block title}\insertblocktitle}
+    \end{minipage}
+  \end{beamercolorbox}
+  
+  % Body
+  \begin{beamercolorbox}[wd=\linewidth]{block body}
+    \centering % This centers the minipage, creating the left/right padding
+    \begin{minipage}{\dimexpr\linewidth-2\paddingLength\relax}
+      \vspace*{0.25\baselineskip} % Top padding inside the body
+      \usebeamerfont{block body}%
+      \justifying
+}
+
+% --- Block End ---
+\setbeamertemplate{block end}{
+    \end{minipage}
+  \end{beamercolorbox}
+  \vspace{0.25\baselineskip} % Space between blocks
+}
+
+%%-----------------------------------------------------------------------------------
+%%   Footer Template
+%%-----------------------------------------------------------------------------------
+
+\setbeamerfont{footline}{size=\large, family=\sffamily}
+
+\newcommand{\footercontent}[1]{\newcommand{\insertfootercontent}{#1}}
+
+\setbeamertemplate{footline}{
+  \ifdefined\insertfootercontent
+    \begin{beamercolorbox}[vmode]{footline}
+      
+      \vspace*{\paddingWidth}
+      
+      \hspace*{\paddingWidth+\sidePadding}
+      \usebeamerfont{footline}%
+      \centering
+      \insertfootercontent
+      \hspace*{\paddingWidth+\sidePadding}
+
+      \vspace*{\paddingWidth}
+    \end{beamercolorbox}
+  \else\fi
+}
+
+
+%%-----------------------------------------------------------------------------------
+%%   Environments Template
+%%-----------------------------------------------------------------------------------
+\newlength{\namelistlabelwd}
+\newlength{\namelistbulletwd}
+
+\newcommand{\namelistbullet}{%
+  {\usebeamercolor[fg]{itemize item}\usebeamertemplate{itemize item}}%
+}
+
+\newenvironment{namelist}[1]{%
+  \setlength{\namelistlabelwd}{\widthof{\textit{#1}}}%
+  \setlength{\namelistbulletwd}{\widthof{\namelistbullet~}}%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{\namelistbulletwd}%
+    \addtolength{\leftmargin}{\namelistlabelwd}%
+    \addtolength{\leftmargin}{1em}%  \labelsep
+    \setlength{\labelwidth}{\namelistbulletwd}%
+    \addtolength{\labelwidth}{\namelistlabelwd}%
+    \setlength{\labelsep}{0.5em}%
+    % \setlength{\itemindent}{.5em}%
+    \setlength{\topsep}{3pt plus 2pt minus 2.5pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\itemsep}{3pt plus 2pt minus 3pt}%
+    \renewcommand{\makelabel}[1]{%
+      \namelistbullet~\makebox[\namelistlabelwd][l]{\textit{##1}}\hss%
+    }%
+  }%
+}{%
+  \end{list}%
+}
+
+\NewDocumentEnvironment{highlight}{}{
+  \begin{tcolorbox}[
+    colback=uiucOrange!20!white,
+    colframe=uiucOrange!20!white,
+    % boxrule=1pt,
+  ]
+}{
+  \end{tcolorbox}
+}

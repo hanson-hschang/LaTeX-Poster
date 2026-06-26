@@ -1,0 +1,187 @@
+\newcommand{\composition}{\circ}
+\newcommand{\define}{=\vcentcolon}
+\newcommand{\defined}{\vcentcolon=}
+\newcommand{\isomorphic}{\cong}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\continuous}{C}
+\newcommand{\euclideans}{\mathbb{E}}
+\newcommand{\Mat}[1][]{\ifthenelse{\equal{#1}{}}{\textnormal{Mat}}{\textnormal{Mat}(#1)}}
+\newcommand{\SO}[1]{\textnormal{SO}({#1})}
+\newcommand{\SE}[1]{\textnormal{SE}({#1})}
+% \newcommand{\so}[1]{\mathfrak{so}(#1)}
+\newcommand{\se}[1]{\mathfrak{se}(#1)}
+\newcommand{\RSO}[1]{R_{\textnormal{\tiny{$\SO$}}}\hspace{-3pt}\left(#1\right)}
+\newcommand{\RSE}[1]{R_{\textnormal{\tiny{$\SE$}}}\hspace{-3pt}\left(#1\right)}
+\newcommand{\tangent}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {{T}}
+    {{T_{#1}}}
+}
+\newcommand{\dualtangent}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {{T^*}}
+    {{T_{#1}^*}}
+}
+
+\newcommand{\leftaction}[1]{L_{#1}}
+\newcommand{\leftextension}[2][e]{\tangent{#1}\leftaction{#2}}
+\newcommand{\dualleftextension}[2][e]{\dualtangent{#1}\leftaction{#2}}
+\newcommand{\leftextensionfromvector}[1]{\Xi_{#1}}
+\newcommand{\MaurerCartanform}[1]{\chi_{#1}}
+% \newcommand{\TSE}[2]{
+%     \ifthenelse{\equal{#1}{}}
+%     {{T\SE{#2}}}
+%     {{T_{#1}\SE{#2}}}
+% }
+% \newcommand{\TSE}[2]{
+%     \tangent[#1]\SE{#2}
+% }
+% \newcommand{\dualTSE}[2][]{
+%     \ifthenelse{\equal{#1}{}}
+%     {{\dualtangent\SE{#2}}}
+%     {{\dualtangent[#1]\SE{#2}}}
+% }
+\newcommand{\dualse}[1]{\mathfrak{se}^*(#1)}
+\newcommand{\sebasis}{X}
+\newcommand{\Adjoint}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {\textnormal{Ad}}
+    {\textnormal{Ad}_{#1}}
+}
+
+\newcommand{\adjoint}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {\textnormal{ad}}
+    {\textnormal{ad}_{#1}}
+}
+\newcommand{\coAdjoint}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {\textnormal{Ad}^*}
+    {\textnormal{Ad}^*_{#1}}
+}
+
+\newcommand{\coadjoint}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {\textnormal{ad}^*}
+    {\textnormal{ad}^*_{#1}}
+}
+\newcommand{\maptoliealgebra}[1]{\left(#1\right)_{\wedge}}
+\newcommand{\maptovector}[1]{\left(#1\right)_{\vee}}
+\newcommand{\maptodualliealgebra}[1]{\left(#1\right)^*_{\wedge}}
+
+% \newcommand{\maptoliealgebra}[1]{\left(#1\right)_{\times}}
+% \newcommand{\maptovector}[1]{\left(#1\right)_{\vert}}
+
+\newcommand{\perpendicular}{\bot}
+
+\newcommand{\circconvolute}[1][\ast]{\raisebox{1pt}{\scriptsize{\textcircled{\tiny{$#1$}}}}}
+\newcommand{\convolute}{*}
+
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\Dif}{\mathrm{D}}
+\newcommand{\gradient}{\nabla}
+\newcommand{\divergence}{\nabla\cdot}
+\newcommand{\Hessian}{\mathbf{H}}
+
+\newcommand{\zeros}{\mathbf{0}}
+\newcommand{\ones}{\mathbf{1}}
+\newcommand{\Set}[1]{\left\{#1\right\}}
+\newcommand{\inlineset}[1]{\{#1\}}
+\newcommand{\given}{\,\middle|\,}
+\newcommand{\at}{|}
+% \renewcommand{\exp}[1]{\textnormal{ exp}\left(#1\right)}
+\newcommand{\csch}[1]{\textnormal{ csch}\left(#1\right)}
+\newcommand{\sech}[1]{\textnormal{ sech}\left(#1\right)}
+\newcommand{\softmax}[1]{\textnormal{softmax}\left(#1\right)}
+\newcommand{\inlinesoftmax}[1]{\textnormal{softmax}(#1)}
+
+\newcommand{\inline}[1]{%
+  \begingroup
+    \let\left\relax
+    \let\right\relax
+    #1%
+  \endgroup
+}
+\newcommand{\sgn}[1]{\textnormal{sgn}\left(#1\right)}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\renewcommand{\det}[1]{\textnormal{det}\left(#1\right)}
+\newcommand{\inverse}{{-1}}
+\newcommand{\pseudoinverse}{+}
+\newcommand{\conjugate}{*}
+\newcommand{\transpose}{\intercal}
+\newcommand{\conjugatetranspose}{\dagger}
+\newcommand{\Trace}[1]{\textnormal{Tr}\left(#1\right)}
+\newcommand{\diag}[1]{\textnormal{diag}\left\{#1\right\}}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\pairing}[2]{\left\llangle #1, #2 \right\rrangle}
+\newcommand{\liebracket}[2]{\left[ #1, \ #2 \right]}
+\newcommand{\Frobenius}{\textnormal{F}}
+\newcommand{\Frobeniusnorm}[1]{\norm{#1}_\Frobenius}
+\newcommand{\distance}[2]{\textnormal{dist}(#1, #2)}
+% \newcommand{\Vector}[1]{\boldsymbol{#1}}
+% \newcommand{\Matrix}[1]{
+% 			\ifthenelse{\equal{#1}{\kappa}}{\boldsymbol{\kappa}}{
+% 			\ifthenelse{\equal{#1}{\nu}}{\boldsymbol{\nu}}{
+% 			\ifthenelse{\equal{#1}{\omega}}{\boldsymbol{\omega}}{
+% 			\ifthenelse{\equal{#1}{\sigma}}{\boldsymbol{\sigma}}{
+% 			\ifthenelse{\equal{#1}{\theta}}{\boldsymbol{\theta}}{
+% 			\ifthenelse{\equal{#1}{\xi}}{\boldsymbol{\xi}}{
+%			\ifthenelse{\equal{#1}{\lambda}}{\boldsymbol{\lambda}}{
+%			\mathbf{#1}}}}}}}}
+% 			}
+			
+\newcommand{\Vector}[1]{{#1}}
+\newcommand{\Matrix}[1]{\mathrm{#1}}
+\newcommand{\identity}[1]{
+    \ifthenelse{\equal{#1}{}}
+    {\Matrix{I}}
+    {\Matrix{I}_{#1}}
+}
+
+\newcommand{\union}{\bigcup}
+
+\newcommand{\ProbabilitySimplex}{\Delta}
+\newcommand{\ProbabilitySpace}[1]{\mathcal{P}\left(#1\right)}
+\newcommand{\sigmaAlgebra}[1]{\sigma\left(#1\right)}
+\newcommand{\indicator}[1]{\textbf{1}_{\left\{#1\right\}}}
+\NewDocumentCommand{\Probability}{o m}{
+  \mathsf{P}
+  \IfValueT{#1}{_{#1}}
+  \IfNoValueT{#1}{}
+  \left(#2\right)
+}
+\NewDocumentCommand{\Expectation}{o m}{
+  \mathsf{E}
+  \IfValueT{#1}{_{#1}}
+  \IfNoValueT{#1}{}
+  \left(#2\right)
+}
+\NewDocumentCommand{\Variance}{o m}{
+  \mathsf{Var}
+  \IfValueT{#1}{_{#1}}
+  \IfNoValueT{#1}{}
+  \left(#2\right)
+}
+\DeclareMathOperator*{\logsumexp}{logsumexp}
+\newcommand{\entropy}[1]{\mathsf{H}\left(#1\right)}
+
+\newcommand{\Dim}{\textnormal{Dim}}
+\renewcommand{\dim}{\mathsf{d}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\subjectto}{\textnormal{s.t.}}
+
+\newcommand{\Order}[1]{O\left(#1\right)}
+
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+
+\renewcommand{\setminus}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
