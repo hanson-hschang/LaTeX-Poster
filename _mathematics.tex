@@ -1,3 +1,6 @@
+\newcommand{\eqname}[1]{\textnormal{(#1)}\qquad}
+\newcommand{\eqnote}[1]{\tag*{(#1)}}
+
 \newcommand{\composition}{\circ}
 \newcommand{\define}{=\vcentcolon}
 \newcommand{\defined}{\vcentcolon=}
@@ -7,11 +10,14 @@
 \newcommand{\integers}{\mathbb{Z}}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\continuous}{C}
+\newcommand{\bounded}{b}
+\newcommand{\Space}[1]{\!\left(#1\right)}
+\newcommand{\measurableSpace}[1]{\mathcal{M}\!\left(#1\right)}
 \newcommand{\euclideans}{\mathbb{E}}
 \newcommand{\Mat}[1][]{\ifthenelse{\equal{#1}{}}{\textnormal{Mat}}{\textnormal{Mat}(#1)}}
 \newcommand{\SO}[1]{\textnormal{SO}({#1})}
 \newcommand{\SE}[1]{\textnormal{SE}({#1})}
-% \newcommand{\so}[1]{\mathfrak{so}(#1)}
+\renewcommand{\so}[1]{\mathfrak{so}(#1)}
 \newcommand{\se}[1]{\mathfrak{se}(#1)}
 \newcommand{\RSO}[1]{R_{\textnormal{\tiny{$\SO$}}}\hspace{-3pt}\left(#1\right)}
 \newcommand{\RSE}[1]{R_{\textnormal{\tiny{$\SE$}}}\hspace{-3pt}\left(#1\right)}
@@ -72,9 +78,6 @@
 \newcommand{\maptovector}[1]{\left(#1\right)_{\vee}}
 \newcommand{\maptodualliealgebra}[1]{\left(#1\right)^*_{\wedge}}
 
-% \newcommand{\maptoliealgebra}[1]{\left(#1\right)_{\times}}
-% \newcommand{\maptovector}[1]{\left(#1\right)_{\vert}}
-
 \newcommand{\perpendicular}{\bot}
 
 \newcommand{\circconvolute}[1][\ast]{\raisebox{1pt}{\scriptsize{\textcircled{\tiny{$#1$}}}}}
@@ -89,22 +92,13 @@
 \newcommand{\zeros}{\mathbf{0}}
 \newcommand{\ones}{\mathbf{1}}
 \newcommand{\Set}[1]{\left\{#1\right\}}
-\newcommand{\inlineset}[1]{\{#1\}}
 \newcommand{\given}{\,\middle|\,}
 \newcommand{\at}{|}
-% \renewcommand{\exp}[1]{\textnormal{ exp}\left(#1\right)}
+\renewcommand{\exp}[1]{\textnormal{ exp}\left(#1\right)}
 \newcommand{\csch}[1]{\textnormal{ csch}\left(#1\right)}
 \newcommand{\sech}[1]{\textnormal{ sech}\left(#1\right)}
 \newcommand{\softmax}[1]{\textnormal{softmax}\left(#1\right)}
-\newcommand{\inlinesoftmax}[1]{\textnormal{softmax}(#1)}
 
-\newcommand{\inline}[1]{%
-  \begingroup
-    \let\left\relax
-    \let\right\relax
-    #1%
-  \endgroup
-}
 \newcommand{\sgn}[1]{\textnormal{sgn}\left(#1\right)}
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -113,60 +107,86 @@
 \newcommand{\pseudoinverse}{+}
 \newcommand{\conjugate}{*}
 \newcommand{\transpose}{\intercal}
-\newcommand{\conjugatetranspose}{\dagger}
+\newcommand{\dual}{\dagger}
 \newcommand{\Trace}[1]{\textnormal{Tr}\left(#1\right)}
 \newcommand{\diag}[1]{\textnormal{diag}\left\{#1\right\}}
 \newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+% Define the double angle brackets without using MnSymbol package
+% The MnSymbol package causes weird symbol issues, e.g. \int
+\makeatletter
+\DeclareFontFamily{OMX}{MnSymbolE}{}
+\DeclareSymbolFont{MnLargeSymbols}{OMX}{MnSymbolE}{m}{n}
+\SetSymbolFont{MnLargeSymbols}{bold}{OMX}{MnSymbolE}{b}{n}
+\DeclareFontShape{OMX}{MnSymbolE}{m}{n}{
+    <-6>  MnSymbolE5
+   <6-7>  MnSymbolE6
+   <7-8>  MnSymbolE7
+   <8-9>  MnSymbolE8
+   <9-10> MnSymbolE9
+  <10-12> MnSymbolE10
+  <12->   MnSymbolE12
+}{}
+\DeclareFontShape{OMX}{MnSymbolE}{b}{n}{
+    <-6>  MnSymbolE-Bold5
+   <6-7>  MnSymbolE-Bold6
+   <7-8>  MnSymbolE-Bold7
+   <8-9>  MnSymbolE-Bold8
+   <9-10> MnSymbolE-Bold9
+  <10-12> MnSymbolE-Bold10
+  <12->   MnSymbolE-Bold12
+}{}
+
+\let\llangle\@undefined
+\let\rrangle\@undefined
+\DeclareMathDelimiter{\llangle}{\mathopen}%
+                     {MnLargeSymbols}{'164}{MnLargeSymbols}{'164}
+\DeclareMathDelimiter{\rrangle}{\mathclose}%
+                     {MnLargeSymbols}{'171}{MnLargeSymbols}{'171}
+\makeatother
 \newcommand{\pairing}[2]{\left\llangle #1, #2 \right\rrangle}
 \newcommand{\liebracket}[2]{\left[ #1, \ #2 \right]}
 \newcommand{\Frobenius}{\textnormal{F}}
 \newcommand{\Frobeniusnorm}[1]{\norm{#1}_\Frobenius}
-\newcommand{\distance}[2]{\textnormal{dist}(#1, #2)}
-% \newcommand{\Vector}[1]{\boldsymbol{#1}}
-% \newcommand{\Matrix}[1]{
-% 			\ifthenelse{\equal{#1}{\kappa}}{\boldsymbol{\kappa}}{
-% 			\ifthenelse{\equal{#1}{\nu}}{\boldsymbol{\nu}}{
-% 			\ifthenelse{\equal{#1}{\omega}}{\boldsymbol{\omega}}{
-% 			\ifthenelse{\equal{#1}{\sigma}}{\boldsymbol{\sigma}}{
-% 			\ifthenelse{\equal{#1}{\theta}}{\boldsymbol{\theta}}{
-% 			\ifthenelse{\equal{#1}{\xi}}{\boldsymbol{\xi}}{
-%			\ifthenelse{\equal{#1}{\lambda}}{\boldsymbol{\lambda}}{
-%			\mathbf{#1}}}}}}}}
-% 			}
-			
-\newcommand{\Vector}[1]{{#1}}
-\newcommand{\Matrix}[1]{\mathrm{#1}}
+
 \newcommand{\identity}[1]{
     \ifthenelse{\equal{#1}{}}
-    {\Matrix{I}}
-    {\Matrix{I}_{#1}}
+    {\mathrm{I}}
+    {\mathrm{I}_{#1}}
 }
 
 \newcommand{\union}{\bigcup}
 
 \newcommand{\ProbabilitySimplex}{\Delta}
-\newcommand{\ProbabilitySpace}[1]{\mathcal{P}\left(#1\right)}
+\newcommand{\ProbabilitySpace}[1]{\mathcal{P}(#1)}
 \newcommand{\sigmaAlgebra}[1]{\sigma\left(#1\right)}
-\newcommand{\indicator}[1]{\textbf{1}_{\left\{#1\right\}}}
+\newcommand{\indicator}[1]{\mathbf{1}_{\left\{#1\right\}}}
 \NewDocumentCommand{\Probability}{o m}{
   \mathsf{P}
   \IfValueT{#1}{_{#1}}
   \IfNoValueT{#1}{}
-  \left(#2\right)
+  \!\left(#2\right)
 }
 \NewDocumentCommand{\Expectation}{o m}{
   \mathsf{E}
   \IfValueT{#1}{_{#1}}
   \IfNoValueT{#1}{}
-  \left(#2\right)
+  \!\left(#2\right)
 }
 \NewDocumentCommand{\Variance}{o m}{
   \mathsf{Var}
   \IfValueT{#1}{_{#1}}
   \IfNoValueT{#1}{}
-  \left(#2\right)
+  \!\left(#2\right)
+}
+\NewDocumentCommand{\Covariance}{o m}{
+  \mathsf{Cov}
+  \IfValueT{#1}{_{#1}}
+  \IfNoValueT{#1}{}
+  \!\left(#2\right)
 }
 \DeclareMathOperator*{\logsumexp}{logsumexp}
+\newcommand{\KLDivergence}[2]{\textnormal{KL}\left(#1 \| #2\right)}
 \newcommand{\entropy}[1]{\mathsf{H}\left(#1\right)}
 
 \newcommand{\Dim}{\textnormal{Dim}}
@@ -178,6 +198,14 @@
 \newcommand{\subjectto}{\textnormal{s.t.}}
 
 \newcommand{\Order}[1]{O\left(#1\right)}
+
+\newcommand{\inline}[1]{%
+  \begingroup
+  \let\left\relax
+  \let\right\relax
+  #1%
+  \endgroup
+}
 
 \newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
 \newcommand{\mysetminusT}{\mysetminusD}

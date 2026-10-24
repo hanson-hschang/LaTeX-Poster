@@ -1,134 +1,48 @@
-\newcommand{\sfa}{\mathsf{a}}
-\newcommand{\sfb}{\mathsf{b}}
-\newcommand{\sfc}{\mathsf{c}}
-\newcommand{\sfd}{\mathsf{d}}
-\newcommand{\sfe}{\mathsf{e}}
-\newcommand{\sff}{\mathsf{f}}
-\newcommand{\sfg}{\mathsf{g}}
-\newcommand{\sfh}{\mathsf{h}}
-\newcommand{\sfi}{\mathsf{i}}
-\newcommand{\sfj}{\mathsf{j}}
-\newcommand{\sfk}{\mathsf{k}}
-\newcommand{\sfl}{\mathsf{l}}
-\newcommand{\sfm}{\mathsf{m}}
-\newcommand{\sfn}{\mathsf{n}}
-\newcommand{\sfo}{\mathsf{o}}
-\newcommand{\sfp}{\mathsf{p}}
-\newcommand{\sfq}{\mathsf{q}}
-\newcommand{\sfr}{\mathsf{r}}
-\newcommand{\sfs}{\mathsf{s}}
-\newcommand{\sft}{\mathsf{t}}
-\newcommand{\sfu}{\mathsf{u}}
-\newcommand{\sfv}{\mathsf{v}}
-\newcommand{\sfw}{\mathsf{w}}
-\newcommand{\sfx}{\mathsf{x}}
-\newcommand{\sfy}{\mathsf{y}}
-\newcommand{\sfz}{\mathsf{z}}
+\newcommand{\raisedtri}[1]{%
+  % 0.3ex is how high to raise it. 0.7 is the size (70%).
+  % #1 passes the math style (display, text, etc.) so it shrinks in subscripts
+  \raisebox{0.2ex}{\scalebox{0.6}{$#1\vartriangle$}}%
+}
 
-\newcommand{\sfA}{\mathsf{A}}
-\newcommand{\sfB}{\mathsf{B}}
-\newcommand{\sfC}{\mathsf{C}}
-\newcommand{\sfD}{\mathsf{D}}
-\newcommand{\sfE}{\mathsf{E}}
-\newcommand{\sfF}{\mathsf{F}}
-\newcommand{\sfG}{\mathsf{G}}
-\newcommand{\sfH}{\mathsf{H}}
-\newcommand{\sfI}{\mathsf{I}}
-\newcommand{\sfJ}{\mathsf{J}}
-\newcommand{\sfK}{\mathsf{K}}
-\newcommand{\sfL}{\mathsf{L}}
-\newcommand{\sfM}{\mathsf{M}}
-\newcommand{\sfN}{\mathsf{N}}
-\newcommand{\sfO}{\mathsf{O}}
-\newcommand{\sfP}{\mathsf{P}}
-\newcommand{\sfQ}{\mathsf{Q}}
-\newcommand{\sfR}{\mathsf{R}}
-\newcommand{\sfS}{\mathsf{S}}
-\newcommand{\sfT}{\mathsf{T}}
-\newcommand{\sfU}{\mathsf{U}}
-\newcommand{\sfV}{\mathsf{V}}
-\newcommand{\sfW}{\mathsf{W}}
-\newcommand{\sfX}{\mathsf{X}}
-\newcommand{\sfY}{\mathsf{Y}}
-\newcommand{\sfZ}{\mathsf{Z}}
+\makeatletter
+\@tfor\letter:=abcdefghijklmnopqrstuvwxyz\do{%
+  % \tt\letter
+  \expandafter\edef\csname tt\letter\endcsname{\noexpand\textnormal{\letter}}%
+  % \sf\letter
+  \expandafter\edef\csname sf\letter\endcsname{\noexpand\mathsf{\letter}}%
+  % \rm\letter
+  \expandafter\edef\csname rm\letter\endcsname{\noexpand\mathrm{\letter}}%
+  % \delta\letter
+  \expandafter\edef\csname delta\letter\endcsname{%
+    \noexpand\mathchoice
+      {\noexpand\raisedtri\displaystyle\noexpand\mkern-1mu \letter}%
+      {\noexpand\raisedtri\textstyle\noexpand\mkern-1mu \letter}%
+      {\noexpand\raisedtri\scriptstyle\noexpand\mkern-1mu \letter}%
+      {\noexpand\raisedtri\scriptscriptstyle\noexpand\mkern-1mu \letter}%
+  }%
+}
+\@tfor\letter:=ABCDEFGHIJKLMNOPQRSTUVWXYZ\do{%
+  % \tt\letter
+  \expandafter\edef\csname tt\letter\endcsname{\noexpand\textnormal{\letter}}%
+  % \cl\letter
+  \expandafter\edef\csname cl\letter\endcsname{\noexpand\mathcal{\letter}}%
+  % \sf\letter
+  \expandafter\edef\csname sf\letter\endcsname{\noexpand\mathsf{\letter}}%
+  % \bb\letter
+  \expandafter\edef\csname bb\letter\endcsname{\noexpand\mathbb{\letter}}%
+  % \rm\letter
+  \expandafter\edef\csname rm\letter\endcsname{\noexpand\mathrm{\letter}}%
+  % \delta\letter
+  \expandafter\edef\csname delta\letter\endcsname{%
+    \noexpand\mathchoice
+      {\noexpand\raisedtri\displaystyle\noexpand\mkern-1mu \letter}%
+      {\noexpand\raisedtri\textstyle\noexpand\mkern-1mu \letter}%
+      {\noexpand\raisedtri\scriptstyle\noexpand\mkern-1mu \letter}%
+      {\noexpand\raisedtri\scriptscriptstyle\noexpand\mkern-1mu \letter}%
+  }%
+}
+\makeatother
 
-\newcommand{\bba}{\mathbb{a}}
-\newcommand{\bbb}{\mathbb{b}}
-\newcommand{\bbc}{\mathbb{c}}
-\newcommand{\bbd}{\mathbb{d}}
-\newcommand{\bbe}{\mathbb{e}}
-\newcommand{\bbf}{\mathbb{f}}
-\newcommand{\bbg}{\mathbb{g}}
-\newcommand{\bbh}{\mathbb{h}}
-\newcommand{\bbi}{\mathbb{i}}
-\newcommand{\bbj}{\mathbb{j}}
-\newcommand{\bbk}{\mathbb{k}}
-\newcommand{\bbl}{\mathbb{l}}
-\newcommand{\bbm}{\mathbb{m}}
-\newcommand{\bbn}{\mathbb{n}}
-\newcommand{\bbo}{\mathbb{o}}
-\newcommand{\bbp}{\mathbb{p}}
-\newcommand{\bbq}{\mathbb{q}}
-\newcommand{\bbr}{\mathbb{r}}
-\newcommand{\bbs}{\mathbb{s}}
-\newcommand{\bbt}{\mathbb{t}}
-\newcommand{\bbu}{\mathbb{u}}
-\newcommand{\bbv}{\mathbb{v}}
-\newcommand{\bbw}{\mathbb{w}}
-\newcommand{\bbx}{\mathbb{x}}
-\newcommand{\bby}{\mathbb{y}}
-\newcommand{\bbz}{\mathbb{z}}
-
-\newcommand{\bbA}{\mathbb{A}}
-\newcommand{\bbB}{\mathbb{B}}
-\newcommand{\bbC}{\mathbb{C}}
-\newcommand{\bbD}{\mathbb{D}}
-\newcommand{\bbE}{\mathbb{E}}
-\newcommand{\bbF}{\mathbb{F}}
-\newcommand{\bbG}{\mathbb{G}}
-\newcommand{\bbH}{\mathbb{H}}
-\newcommand{\bbI}{\mathbb{I}}
-\newcommand{\bbJ}{\mathbb{J}}
-\newcommand{\bbK}{\mathbb{K}}
-\newcommand{\bbL}{\mathbb{L}}
-\newcommand{\bbM}{\mathbb{M}}
-\newcommand{\bbN}{\mathbb{N}}
-\newcommand{\bbO}{\mathbb{O}}
-\newcommand{\bbP}{\mathbb{P}}
-\newcommand{\bbQ}{\mathbb{Q}}
-\newcommand{\bbR}{\mathbb{R}}
-\newcommand{\bbS}{\mathbb{S}}
-\newcommand{\bbT}{\mathbb{T}}
-\newcommand{\bbU}{\mathbb{U}}
-\newcommand{\bbV}{\mathbb{V}}
-\newcommand{\bbW}{\mathbb{W}}
-\newcommand{\bbX}{\mathbb{X}}
-\newcommand{\bbY}{\mathbb{Y}}
-\newcommand{\bbZ}{\mathbb{Z}}
-
-\newcommand{\clA}{\mathcal{A}}
-\newcommand{\clB}{\mathcal{B}}
-\newcommand{\clC}{\mathcal{C}}
-\newcommand{\clD}{\mathcal{D}}
-\newcommand{\clE}{\mathcal{E}}
-\newcommand{\clF}{\mathcal{F}}
-\newcommand{\clG}{\mathcal{G}}
-\newcommand{\clH}{\mathcal{H}}
-\newcommand{\clI}{\mathcal{I}}
-\newcommand{\clJ}{\mathcal{J}}
-\newcommand{\clK}{\mathcal{K}}
-\newcommand{\clL}{\mathcal{L}}
-\newcommand{\clM}{\mathcal{M}}
-\newcommand{\clN}{\mathcal{N}}
-\newcommand{\clO}{\mathcal{O}}
-\newcommand{\clP}{\mathcal{P}}
-\newcommand{\clQ}{\mathcal{Q}}
-\newcommand{\clR}{\mathcal{R}}
-\newcommand{\clS}{\mathcal{S}}
-\newcommand{\clT}{\mathcal{T}}
-\newcommand{\clU}{\mathcal{U}}
-\newcommand{\clV}{\mathcal{V}}
-\newcommand{\clW}{\mathcal{W}}
-\newcommand{\clX}{\mathcal{X}}
-\newcommand{\clY}{\mathcal{Y}}
-\newcommand{\clZ}{\mathcal{Z}}
+% negative kern that pulls a subscript back toward its base after \overline or \bar,
+% which box the base and drop the italic correction, e.g. \bar{Y}_{\sss t}
+\newcommand{\sss}{\mkern-4.5mu} % slanted subscript spacing
